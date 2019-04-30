@@ -40,3 +40,13 @@ prompt or your machine's equivilent. After you have done this, use the command
 To connect to the server, open a browser and connect to http://localhost:8080/station
 (Others may change this later, if so, please update the readme to include a propper
 test link)
+
+The server can also handle requests for album art. This will require a collection 
+called art in the database, filled with the filenames of the album art. The art shold
+be stored in the Server/audio/art/ folder.
+
+You will need a seperate entry/doccument for every song. This may change in future versions.
+
+_id:ObjectID("5cc8849ecef64c2784a9a483")
+songname:"song1.mp3"
+filename:"81efglR0ciL._SS500_.jpg"

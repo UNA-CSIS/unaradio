@@ -41,21 +41,49 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 			).toArray(function(err, res) {
 				try{
 					response.write(fs.readFileSync("audio/station/" + res[0].filename, 'binary'), 'binary');
+					console.log(res[0].filename); //testing line, feel free to comment out if needed.
 				}
 				catch(err){
 					console.log(err);
 					response.send("ERROR: " + err);
 				}
 				//response.end();
-				console.log(res[0].filename); //testing line, feel free to comment out if needed.
 			});
 		}
 		catch(err){
 			console.log(err);
 			response.send("ERROR: " + err);
 		}
-		
 	});
 	
+		app.get( '/art/:songname', function(req, response)  {
+		
+		try{
+			db.db("music").collection("art").aggregate(
+				[
+					{
+						$match: {songname: {$eq: (req.params.songname) }}
+					},
+					{
+						$sample: {size: 1}
+					}
+				]
+			).toArray(function(err, res) {
+				try{
+					response.write(fs.readFileSync("audio/art/" + res[0].filename, 'binary'), 'binary');
+					console.log(res[0].filename); //testing line, feel free to comment out if needed.
+				}
+				catch(err){
+					console.log(err);
+					response.send("ERROR: " + err);
+				}
+				response.end();
+			});
+		}
+		catch(err){
+			console.log(err);
+			response.send("ERROR: " + err);
+		}
+	});
 	
 });
