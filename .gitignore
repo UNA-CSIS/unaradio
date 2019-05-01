@@ -1,8 +1,0 @@
-# files that will not be uploaded to the github repository
-# along with the reasons why
-
-# several audio files, etc were used for trsting purposes, but
-# many of these may be rotected under copyright laws, so they
-# will not be uploaded. You will need to provide your own.
-*.mp3
-*.jpg
